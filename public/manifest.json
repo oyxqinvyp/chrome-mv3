@@ -1,0 +1,79 @@
+{
+  "manifest_version": 3,
+  "name": "SellingExpress Tool",
+  "homepage_url": "https://www.sellingexpress.net/",
+  "version": "2.0.0",
+  "description": "专注于亚马逊，卖家精细化管理；自动获取交易及流量数据",
+  "host_permissions": [
+    "https://plugin.sellingexpress.net/*",
+    "https://www.sellingexpress.net/*",
+    "https://sellercentral.amazon.com/*",
+    "https://sellercentral.amazon.co.uk/*",
+    "https://sellercentral-japan.amazon.com/*",
+    "https://sellercentral.amazon.ca/*",
+    "https://sellercentral.amazon.de/*",
+    "https://sellercentral.amazon.fr/*",
+    "https://sellercentral.amazon.it/*",
+    "https://sellercentral.amazon.es/*",
+    "https://sellercentral.amazon.com.mx/*",
+    "https://sellercentral.amazon.in/*",
+    "https://sellercentral.amazon.cn/*",
+    "https://sellercentral.amazon.com.au/*",
+    "https://apac.account.amazon.com/ap/*",
+    "https://na.account.amazon.com/ap/*",
+    "https://eu.account.amazon.com/ap/*",
+    "https://sellercentral-europe.amazon.com/*",
+    "https://sellercentral.amazon.co.jp/*",
+    "https://sellercentral.amazon.nl/*",
+    "https://sellercentral.amazon.ae/*",
+    "https://sellercentral.amazon.sa/*",
+    "https://sellercentral.amazon.se/*",
+    "https://sellercentral.amazon.sg/*",
+    "https://sellercentral.amazon.com.br/*",
+    "https://sellercentral.amazon.pl/*",
+    "https://www.amazon.com/*",
+    "https://www.amazon.com.mx/*",
+    "https://www.amazon.com.br/*",
+    "https://www.amazon.ca/*",
+    "https://www.amazon.fr/*",
+    "https://www.amazon.de/*",
+    "https://www.amazon.co.uk/*",
+    "https://www.amazon.it/*",
+    "https://www.amazon.es/*",
+    "https://www.amazon.ae/*",
+    "https://www.amazon.in/*",
+    "https://www.amazon.nl/*",
+    "https://www.amazon.pl/*",
+    "https://www.amazon.sa/*",
+    "https://www.amazon.se/*",
+    "https://www.amazon.sg/*",
+    "https://www.amazon.com.au/*",
+    "https://www.amazon.co.jp/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "permissions": [
+    "storage",
+    "alarms",
+    "tabs",
+    "cookies",
+    "notifications",
+    "declarativeContent",
+    "scripting"
+  ],
+  "web_accessible_resources": [{
+    "resources": ["popup.html"],
+    "matches": [ "<all_urls>" ]
+  }],
+  "action": {},
+  "icons": {
+    "16": "/image/icon16.png",
+    "48": "/image/icon48.png",
+    "128": "/image/icon128.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}
