@@ -29,6 +29,7 @@ import {
   toRefs,
   onUpdated,
   watch,
+  computed,
 } from 'vue'
 import Navbar from '@/popup/views/layout/components/Navbar.vue'
 import BottomBar from '@/popup/views/layout/components/BottomBar.vue'
@@ -36,6 +37,7 @@ import { setChromeStorage } from '@/utils/tool-chrome'
 import { login } from '@/popup/api/login'
 import { useRouter } from 'vue-router'
 import { message } from 'ant-design-vue'
+import { useStore } from 'vuex'
 
 interface FormState {
   userid: string
@@ -49,15 +51,18 @@ export default defineComponent({
     BottomBar,
   },
   setup() {
+    const store = useStore()
     const router = useRouter()
     const formState = reactive<FormState>({
       userid: '',
       password: '',
     })
     const onFinish = async (values: any) => {
+      
       try {
         const res: any = await login(values)
         if (res) {
+          await store.dispatch('setState', res)
           await setChromeStorage('userData', res)
           message.success('登录成功')
           router.push({

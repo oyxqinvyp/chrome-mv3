@@ -10,19 +10,43 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, reactive, onMounted, toRefs, onUpdated } from 'vue';
+import {
+  defineComponent,
+  ref,
+  reactive,
+  onMounted,
+  toRefs,
+  onUpdated,
+  computed,
+  watch,
+} from 'vue'
+import { useStore } from 'vuex'
+
 export default defineComponent({
   components: {},
   name: 'Login',
   setup() {
     const state = reactive({
-      value: '123456',
-    });
+      value: '',
+    })
+
+    const store = useStore()
+
+    let userData = computed(() => store.state.userData)
+
+    console.log(userData)
+    watch(
+      () => userData,
+      () => {
+        console.log(userData, '123')
+      }
+    )
+
     return {
       ...toRefs(state),
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="less">

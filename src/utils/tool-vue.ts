@@ -18,9 +18,8 @@ export const isPermission = async (key: string, callback?: any) => {
 
 // 获取版本号
 export const getVersion = () => {
-  // console.log(process.env)
   return {
-    version: process.env.VUE_APP_SES_VERSION
+    version: process.env.SES_VERSION
   }
 }
 

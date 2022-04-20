@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { getChromeStorage } from '@/utils/tool-chrome'
+import store from '../store'
 
 const routes = [
   {
@@ -63,7 +64,7 @@ router.beforeEach(async (to, form, next) => {
   if (!loginData.UserID) {
     const res: any = await getChromeStorage('userData')
     loginData = res.data
-    console.log(loginData)
+    store.dispatch('setState', loginData)
   }
 
   if (to.path === '/login') {
