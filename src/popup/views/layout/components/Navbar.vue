@@ -4,7 +4,14 @@
       <div class="content-left">
         <img src="@/popup/assets/images/logo-w-w.png" class="left-logo" alt="">
       </div>
-      <div class="content-right"></div>
+      <div class="content-right">
+        <div class="user-img">
+          <img src="@/popup/assets/images/user.png" alt="">
+          ouyangxq
+        </div>
+        <span class="user-line">|</span>
+        <div class="user-site">在线站点{{  }}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -33,14 +40,9 @@ export default defineComponent({
     const store = useStore()
 
     let userData = computed(() => store.state.userData)
+    let userSite = computed(() => store.state.userSite)
 
-    console.log(userData)
-    watch(
-      () => userData,
-      () => {
-        console.log(userData, '123')
-      }
-    )
+    console.log(userData, userSite)
 
     return {
       ...toRefs(state),
@@ -49,13 +51,14 @@ export default defineComponent({
 })
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .navbar {
   height: 72px;
   line-height: 72px;
   overflow: hidden;
   position: relative;
   background-color: #ffa004;
+
   .navbar-content {
     width: 800px;
     height: 100%;
@@ -65,8 +68,25 @@ export default defineComponent({
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: #fff;
     .content-left .left-logo {
+      padding-left: 10px;
       height: 50px;
+    }
+    .content-right {
+      padding-right: 10px;
+      display: flex;
+
+      .user-img {
+        border-radius: 50%;
+        > img {
+          width: 24px;
+          height: 24px;
+        }
+      }
+      .user-line {
+        margin: 0 20px;
+      }
     }
   }
 }

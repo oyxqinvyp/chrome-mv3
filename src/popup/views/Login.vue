@@ -58,11 +58,10 @@ export default defineComponent({
       password: '',
     })
     const onFinish = async (values: any) => {
-      
       try {
         const res: any = await login(values)
         if (res) {
-          await store.dispatch('setState', res)
+          await store.dispatch('setUserData', res)
           await setChromeStorage('userData', res)
           message.success('登录成功')
           router.push({

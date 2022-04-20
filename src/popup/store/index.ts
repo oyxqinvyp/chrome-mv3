@@ -10,11 +10,11 @@ export default createStore({
     getUserSite: state => state.userSite,
   },
   mutations: {
-    setState: (state, param) => state.userData = param,
+    setUserData: (state, param) => state.userData = param,
     setUserSite: (state, param) => state.userSite = param,
   },
   actions: {
-    setState: ({ commit }, param) => commit('setState', param),
-    setUserSite: ({ commit }, param) => commit('setState', param),
+    setUserData: ({ commit }, param) => commit('setUserData', param),
+    setUserSite: ({ commit }, param) => commit('setUserSite', param),
   }
 })

@@ -62,9 +62,11 @@ let loginData: any = {}
 // 添加路由守卫
 router.beforeEach(async (to, form, next) => {
   if (!loginData.UserID) {
-    const res: any = await getChromeStorage('userData')
-    loginData = res.data
-    store.dispatch('setState', loginData)
+    const userData: any = await getChromeStorage('userData')
+    loginData = userData.data
+    store.dispatch('setUserData', loginData)
+    const userSite: any = await getChromeStorage('userSite')
+    store.dispatch('setUserSite', userSite.data)
   }
 
   if (to.path === '/login') {
