@@ -44,7 +44,7 @@
     <div class="task-no-data">
       <img src="@/popup/assets/images/no-task.png" class="empty" />
       <div>
-        <a-button type="primary" size="large">创建自定义任务</a-button>
+        <a-button type="primary">创建自定义任务</a-button>
       </div>
     </div>
   </div>

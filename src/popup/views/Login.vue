@@ -5,13 +5,13 @@
       <div class="page">
         <a-form class="login-form" layout="vertical" :model="formState" @finish="onFinish">
           <a-form-item label="用户名" name="userid" :rules="[{ required: true, message: '请输入用户名/手机号/邮箱后点击登录' }]">
-            <a-input v-model:value="formState.userid" size="large" placeholder="用户名/手机号/邮箱"></a-input>
+            <a-input v-model:value="formState.userid" placeholder="用户名/手机号/邮箱"></a-input>
           </a-form-item>
           <a-form-item label="密码" name="password" :rules="[{ required: true, message: '请输入登录密码后点击登录' }]">
-            <a-input-password v-model:value="formState.password" size="large" placeholder="请输入登录密码" />
+            <a-input-password v-model:value="formState.password" placeholder="请输入登录密码" />
           </a-form-item>
           <a-form-item>
-            <a-button class="mt20" shape="round" type="primary" size="large" block html-type="submit">登录</a-button>
+            <a-button class="mt20" shape="round" type="primary" block html-type="submit">登录</a-button>
           </a-form-item>
         </a-form>
       </div>

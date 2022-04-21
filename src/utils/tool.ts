@@ -1,5 +1,4 @@
 import moment from 'moment'
-
 moment.locale('zh-cn')
 
 export const contains = function (list: Array<any>, obj: any) {

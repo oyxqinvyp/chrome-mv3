@@ -4,7 +4,7 @@
     <Navbar />
     <div class="app-wrapper-main">
       <div class="page">
-        <a-tabs v-model:activeKey="activeKey" @change="handleChange">
+        <a-tabs v-model:activeKey="activeKey" @change="handleChange" size="small">
           <a-tab-pane tab="" key=""></a-tab-pane>
           <a-tab-pane tab="首页" key="task"></a-tab-pane>
           <a-tab-pane tab="创建自定义任务" key="edit"></a-tab-pane>

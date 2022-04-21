@@ -1,13 +1,33 @@
 <template>
-  <a-config-provider component-size="small">
+  <a-config-provider component-size="large" :locale="antdLocal">
     <router-view></router-view>
   </a-config-provider>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import zhCN from 'ant-design-vue/es/locale/zh_CN'
+import enUS from 'ant-design-vue/es/locale/en_US'
+import dayjs from 'dayjs'
+import 'dayjs/locale/zh-cn'
+dayjs.locale('zh-cn')
+
+import { defineComponent, ref, computed } from 'vue'
 export default defineComponent({
-  setup() {},
+  setup() {
+    const antdLocal = ref(
+      computed(() => {
+        const language = {
+          'zh-CN': zhCN,
+          'en-US': enUS,
+        }
+        return language['zh-CN']
+      })
+    )
+
+    return {
+      antdLocal,
+    }
+  },
 })
 </script>
 
