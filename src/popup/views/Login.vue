@@ -34,7 +34,7 @@ import {
 import Navbar from '@/popup/views/layout/components/Navbar.vue'
 import BottomBar from '@/popup/views/layout/components/BottomBar.vue'
 import { setChromeStorage } from '@/utils/tool-chrome'
-import { login } from '@/popup/api/login'
+import { login } from '@/popup/api/vue'
 import { useRouter } from 'vue-router'
 import { message } from 'ant-design-vue'
 import { useStore } from 'vuex'

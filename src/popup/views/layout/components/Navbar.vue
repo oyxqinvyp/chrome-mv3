@@ -4,13 +4,22 @@
       <div class="content-left">
         <img src="@/popup/assets/images/logo-w-w.png" class="left-logo" alt="">
       </div>
-      <div class="content-right">
-        <div class="user-img">
-          <img src="@/popup/assets/images/user.png" alt="">
-          ouyangxq
-        </div>
+      <div class="content-right" v-if="userData && userData.UserID">
+        <a-dropdown :trigger="['click']">
+          <div class="user-img">
+            <img src="@/popup/assets/images/user.png" alt="">
+            {{ userData && userData.UserID }}
+          </div>
+          <template #overlay>
+            <div class="dropdown-box">
+              <a-button @click="clickLogout">退出系统</a-button>
+            </div>
+          </template>
+        </a-dropdown>
         <span class="user-line">|</span>
-        <div class="user-site">在线站点{{  }}</div>
+        <div class="user-site">在线站点
+          <span v-if="userSite && userSite.length !== 0">({{ userSite && userSite.length }})</span>
+        </div>
       </div>
     </div>
   </div>
@@ -28,24 +37,37 @@ import {
   watch,
 } from 'vue'
 import { useStore } from 'vuex'
+import { clearChromeStorage } from '@/utils/tool-chrome'
+import { message } from 'ant-design-vue'
+import { useRouter, useRoute } from 'vue-router'
 
 export default defineComponent({
   components: {},
   name: 'Login',
   setup() {
-    const state = reactive({
-      value: '',
-    })
-
+    const router = useRouter()
+    const route = useRoute()
     const store = useStore()
 
     let userData = computed(() => store.state.userData)
     let userSite = computed(() => store.state.userSite)
 
-    console.log(userData, userSite)
+    let clickLogout = async () => {
+      try {
+        const res: any = await clearChromeStorage()
+        if (res.status) {
+          message.success('退出成功')
+          router.push({
+            name: 'login',
+          })
+        }
+      } catch (err) {}
+    }
 
     return {
-      ...toRefs(state),
+      clickLogout,
+      userData,
+      userSite,
     }
   },
 })
@@ -79,6 +101,8 @@ export default defineComponent({
 
       .user-img {
         border-radius: 50%;
+        cursor: pointer;
+
         > img {
           width: 24px;
           height: 24px;

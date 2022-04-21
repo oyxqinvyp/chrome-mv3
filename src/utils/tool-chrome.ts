@@ -95,10 +95,21 @@ export const setChromeStorage = async (key: string, data: any) => {
   })
 }
 
-export const clearChromeStorage = async (key: string) => {
+export const clearChromeStorage = async () => {
   return new Promise((resolve, reject) => {
     try {
-      resolve(true)
+      if (!isChrome) {
+        resolve({
+          status,
+          data: null
+        })
+      }
+      chrome.storage.local.clear(() => {
+        resolve({
+          status,
+          data: null
+        })
+      })
     } catch (err) {
       reject(err)
     }

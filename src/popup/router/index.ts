@@ -5,7 +5,7 @@ import store from '../store'
 const routes = [
   {
     path: '/login',
-    name: 'Login',
+    name: 'login',
     component: () => import('@/popup/views/Login.vue')
   },
   {
@@ -61,7 +61,7 @@ let loginData: any = {}
 
 // 添加路由守卫
 router.beforeEach(async (to, form, next) => {
-  if (!loginData.UserID) {
+  if (!loginData || !loginData.UserID) {
     const userData: any = await getChromeStorage('userData')
     loginData = userData.data
     store.dispatch('setUserData', loginData)
@@ -71,7 +71,7 @@ router.beforeEach(async (to, form, next) => {
 
   if (to.path === '/login') {
     next()
-  } else if (loginData.UserID) {
+  } else if (loginData && loginData.UserID) {
     next()
   } else {
     next({ path: '/login' })

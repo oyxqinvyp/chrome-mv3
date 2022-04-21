@@ -2,7 +2,7 @@
 import siteInfo from '@/popup/config/siteInfo'
 import toolChrome from "./tool-chrome"
 import tool from './tool'
-import { sellerList } from '@/popup/api/login'
+import { sellerList } from '@/popup/api/vue'
 import { PostAmazon } from '@/popup/api/amazon'
 
 // 是否有权限
