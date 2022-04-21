@@ -18,6 +18,7 @@ export default defineConfig({
       less: {
         modifyVars: {
           'primary-color': '#f6a900',
+          'font-size-base': '12px' // 主字号
         },
         javascriptEnabled: true
       }

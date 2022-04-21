@@ -43,19 +43,19 @@ const devParams: any = {
 // 用户数据 userData
 // 用户选择同步时间 userRadioData
 // 站点数据 userSite
-const status: number = 2000
+const code: number = 2000
 export const getChromeStorage = async (key: string) => {
   return new Promise((resolve, reject) => {
     try {
       if (!isChrome) {
         resolve({
-          status,
+          code,
           data: devParams[key]
         })
       }
       chrome.storage.sync.get(key, (result: any) => {
         const params = {
-          status,
+          code,
           data: null
         }
         if (result && result[key]) {
@@ -78,13 +78,13 @@ export const setChromeStorage = async (key: string, data: any) => {
     try {
       if (!isChrome) {
         resolve({
-          status,
+          code,
           data: null
         })
       }
       chrome.storage.sync.set(params, () => {
         const data = {
-          status,
+          code,
           data: null
         }
         resolve(data)
@@ -100,13 +100,13 @@ export const clearChromeStorage = async () => {
     try {
       if (!isChrome) {
         resolve({
-          status,
+          code,
           data: null
         })
       }
       chrome.storage.local.clear(() => {
         resolve({
-          status,
+          code,
           data: null
         })
       })

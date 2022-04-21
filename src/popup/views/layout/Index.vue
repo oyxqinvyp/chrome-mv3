@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <a-spin v-if="isLoading" :delay="500" :spinning="isLoading" class="loading-box" />
     <Navbar />
     <div class="app-wrapper-main">
       <div class="page">
@@ -21,10 +22,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, reactive, onMounted, toRefs, watch } from 'vue'
+import {
+  defineComponent,
+  ref,
+  reactive,
+  onMounted,
+  toRefs,
+  watch,
+  computed,
+} from 'vue'
 import Navbar from '@/popup/views/layout/components/Navbar.vue'
 import BottomBar from '@/popup/views/layout/components/BottomBar.vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 
 export default defineComponent({
   name: 'layout-index',
@@ -34,9 +44,14 @@ export default defineComponent({
   },
   setup() {
     const router = useRouter()
+    const store = useStore()
 
     const state = reactive({
       activeKey: 'task',
+    })
+
+    let isLoading = computed(() => {
+      return store.state.isLoading
     })
 
     onMounted(() => {
@@ -50,6 +65,7 @@ export default defineComponent({
 
     return {
       ...toRefs(state),
+      isLoading,
       handleChange,
     }
   },
@@ -57,6 +73,16 @@ export default defineComponent({
 </script>
 
 <style lang="less">
-.page /deep/ {
+.loading-box {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

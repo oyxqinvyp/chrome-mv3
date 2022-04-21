@@ -175,10 +175,7 @@ export const checkSite = async (isReCheck: boolean) => {
       result.push(_merchantId);
     }
   })
-  const list = await setSellerIdListDomainObj(domainObj, result, SellerIdList)
-
-  
-  console.log(list)
+  return await setSellerIdListDomainObj(domainObj, result, SellerIdList).catch(err => { })
 }
 
 export default {

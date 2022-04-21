@@ -1,6 +1,8 @@
 <template>
   <div class="check-page">
-    <div v-if="list.length"></div>
+    <div v-if="list.length">
+
+    </div>
     <div v-else class="checking">
       <div class="t-desc">第一次检测需要的时间比较久，请耐心等待</div>
       <img src="@/popup/assets/images/no-task.png" class="empty" />
@@ -25,17 +27,19 @@ export default defineComponent({
   setup() {
     const state = reactive({
       list: [],
+      loading: true,
       showCheck: false,
     });
     const getUserSite = async () => {
       state.showCheck = true
-      await checkSite()
+      const list = await checkSite()
+
     };
 
     onMounted(async () => {
       const res = await getChromeStorage('userSite');
       if (res.code === 2000) {
-        state.list = res.data;
+        // state.list = res.data;
         return;
       }
       getUserSite();

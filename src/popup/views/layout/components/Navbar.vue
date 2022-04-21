@@ -55,7 +55,7 @@ export default defineComponent({
     let clickLogout = async () => {
       try {
         const res: any = await clearChromeStorage()
-        if (res.status) {
+        if (res.code === 2000) {
           message.success('退出成功')
           router.push({
             name: 'login',
